@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dawn Speech"
+  short_description: "让文章、口播与产品文案自然清楚，保留事实、作者判断与真实语气"
+  default_prompt: "使用 $dawn-speech，保留原意与事实，把下面的材料改成自然清楚、适合目标读者的成稿。"

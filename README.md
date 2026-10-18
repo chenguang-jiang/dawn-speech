@@ -6,13 +6,40 @@
 
 ## 安装
 
-将本仓库克隆到 Agent 的技能目录，目录名保留为 `dawn-speech`。例如，Codex 默认用户技能目录：
+本仓库本身就是一个完整的 Skill，根目录包含 `SKILL.md`，无需转换成插件或调用 API。将整个仓库放入 Agent 的技能目录，目录名保留为 `dawn-speech`。
+
+| Agent | 用户级安装位置 | 使用方式 |
+| --- | --- | --- |
+| Codex | `~/.codex/skills/dawn-speech/` | 在技能菜单中选择，或输入 `$dawn-speech` |
+| ZCode | `~/.zcode/skills/dawn-speech/` | 在设置的 Skills 或输入框的技能菜单中选择，也可在请求中明确写出 `dawn-speech` |
+| Claude Code | `~/.claude/skills/dawn-speech/` | 输入 `/dawn-speech` 或直接要求使用该技能 |
+| 支持 Agent Skills 的其他 Agent | 对应产品的技能发现目录 | 使用产品的技能菜单或自然语言指名 |
+
+例如，安装到 Codex：
 
 ```bash
 git clone https://github.com/chenguang-jiang/dawn-speech.git ~/.codex/skills/dawn-speech
 ```
 
-如果设置了 `CODEX_HOME`，请使用对应的 `skills/dawn-speech` 目录。若目标目录已存在，先检查现有版本，避免覆盖个人修改。其他 Agent 使用各自的技能目录；重新加载技能或开启新会话后使用。
+安装到 ZCode：
+
+```bash
+git clone https://github.com/chenguang-jiang/dawn-speech.git ~/.zcode/skills/dawn-speech
+```
+
+安装到 Claude Code：
+
+```bash
+git clone https://github.com/chenguang-jiang/dawn-speech.git ~/.claude/skills/dawn-speech
+```
+
+如果设置了 `CODEX_HOME`，请使用对应的 `skills/dawn-speech` 目录。若目标目录已存在，先检查现有版本，避免覆盖个人修改。重新加载技能或开启新会话后使用；未刷新技能列表的客户端可能需要重启。
+
+Codex 和 ZCode 也可以从共享的 `~/.agents/skills/dawn-speech/` 发现技能。本机可保留一份内容，再从各产品的技能目录建立指向它的符号链接，以免多个副本更新不同步；不同产品的发现与刷新行为以其当前版本为准。
+
+手动安装时，也可以下载仓库 ZIP，解压后将目录重命名为 `dawn-speech` 再放入对应目录。务必保持 `dawn-speech/SKILL.md`，避免多嵌套一层。支持技能压缩包导入的客户端，可按其要求导入，不能导入时使用解压安装。
+
+`agents/openai.yaml` 仅用于 Codex 的展示元数据；其他 Agent 读取 `SKILL.md` 即可。措辞检查脚本为可选功能，需要 Python 3；不运行脚本也能使用全部写作规则。不支持技能发现的普通聊天工具，可以手动附上 `SKILL.md` 作为写作指南，但不会因此获得自动技能调用能力。
 
 ## 使用
 
